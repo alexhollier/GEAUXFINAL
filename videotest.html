@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="videotest.css">
+    <link rel="icon" href="favicon.ico" />
+
+    <title>The War Atlas</title>
+    <style>
+        :root {
+            --overlay-color: #ab9623a4; /* Initial color */
+            --new-color: #ff0000; /* Color to transition to */
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--overlay-color); /* Use initial color */
+            mix-blend-mode: overlay;
+            z-index: 1; /* Make sure it's above the video or background */
+            transition: background 1.5s ease; /* Smooth transition for background change */
+        }
+
+        body {
+            position: relative;
+        }
+
+        #changeOverlayColor {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <section class="showcase">
+        <header>
+            <h1 class="logo">The War Atlas</h1>
+            <div class="toggle"></div>
+        </header>
+
+        <video src="stockmain.mp4" muted loop autoplay></video>
+        <div class="overlay"></div>
+
+        <div class="text">
+            <h3>Navigate global conflicts with real-time insights.</h3>
+            <p>Our platform provides real-time data on global conflicts with an interactive map of active warfare zones. Select a country for up-to-date information on its population, capital, area, and more to better understand the affected regions.</p>
+            <a href="javascript:setTimeout(()=>{window.location = 'htmlMAP.html'}, 1000);" id ="exploreLink">Explore</a>
+          
+        </div>
+    </section>
+
+    <script>
+        let isOriginalColor = true; // Track the current color state
+
+// Function to change the overlay color
+function toggleOverlayColor() {
+    if (isOriginalColor) {
+        // Change to new color
+        document.documentElement.style.setProperty('--overlay-color', '#ff0000');
+    } else {
+        // Change back to original color
+        document.documentElement.style.setProperty('--overlay-color', '#805317');
+    }
+    isOriginalColor = !isOriginalColor; // Toggle the color state
+}
+
+// Add click event to the Explore link
+document.getElementById('exploreLink').addEventListener('click', function() {
+    toggleOverlayColor(); // Change overlay color when clicked
+});
+    </script>
+</body>
+</html>
